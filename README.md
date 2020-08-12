@@ -43,7 +43,7 @@ export default {
 </script>
 ```
 
-Vue Debounce Provider uses a scoped slot to yield a `debounce` method. This
+It uses a scoped slot to yield a `debounce` method. This
 method can be bound to as many events as you want. Like any debounce, the
 method restarts a timeout each time it is called. After the `:wait` time has
 elapsed uninterrupted, the method bound to `@timeout` is called.
