@@ -86,7 +86,7 @@ is called.
 
 #### `wait`
 
-Type: `Number`
+Type: `Number`<br/>
 Default: `0`
 
 Number of milliseconds to wait between `debounce` being called and invoking the
@@ -94,14 +94,14 @@ Number of milliseconds to wait between `debounce` being called and invoking the
 
 #### `leading`
 
-Type: `Boolean`
+Type: `Boolean`<br/>
 Default: `false`
 
 Invokes the `@timeout` method the first time `debounce` is called with no delay.
 
 #### `leading`
 
-Type: `Boolean`
+Type: `Boolean`<br/>
 Default: `true`
 
 Invokes the `@timeout` method the last `debounce` is called and `:wait` has
