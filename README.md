@@ -82,6 +82,31 @@ export default {
 Any event arguments received by `debounce` are passed to `@timeout` when it
 is called.
 
+### Props
+
+#### `wait`
+
+Type: `Number`
+Default: `0`
+
+Number of milliseconds to wait between `debounce` being called and invoking the
+`@timeout` method.
+
+#### `leading`
+
+Type: `Boolean`
+Default: `false`
+
+Invokes the `@timeout` method the first time `debounce` is called with no delay.
+
+#### `leading`
+
+Type: `Boolean`
+Default: `true`
+
+Invokes the `@timeout` method the last `debounce` is called and `:wait` has
+elapsed.
+
 ### Styling
 
 By default, the `<vue-debounce-provider>` component behaves like a `<div>`
