@@ -34,9 +34,9 @@ rather than writing additional methods or using wrapper libraries.
 <script>
 export default {
   methods: {
-    // some slow operation here
     rangeChanged(e) {
-      // UH OH! This gets called hundreds of times as the range slider is moved
+      // some slow operation here
+      // This gets called hundreds of times as the range slider is moved!
     }
   }
 }
@@ -70,9 +70,9 @@ export default {
   },
 
   methods: {
-    // some slow operation here
     rangeChanged(e) {
-      // COOL! This only gets called once
+      // some slow operation here
+      // This only gets called once!
     }
   }
 }
