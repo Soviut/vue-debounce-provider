@@ -99,13 +99,13 @@ Default: `false`
 
 Invokes the `@timeout` method the first time `debounce` is called with no delay.
 
-#### `leading`
+#### `trailing`
 
 Type: `Boolean`<br/>
 Default: `true`
 
-Invokes the `@timeout` method the last `debounce` is called and `:wait` has
-elapsed.
+Invokes the `@timeout` method after the last `debounce` is called and `:wait`
+has elapsed.
 
 ### Styling
 
