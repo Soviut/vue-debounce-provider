@@ -1,0 +1,48 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>Vue Debounce Provider</title>
+
+    <meta name="description" content="Vue Debounce Provider">
+    <meta name="author" content="Ian Zamojc">
+  </head>
+
+  <body>
+    <div id="app">
+      <debounce
+        v-slot="{ debounce }"
+        :wait="300"
+        @timeout="timeout"
+      >
+        <button @click="debounce">
+          Click me
+        </button>
+      </debounce>
+    </div>
+
+    <script type="module">
+      import Vue from 'https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.esm.browser.js'
+
+      import VueDebounce from './lib/index.js'
+
+      Vue.component('debounce', VueDebounce)
+
+      var app = new Vue({
+        el: '#app',
+
+        data: {
+          message: 'Hello Vue!'
+        },
+
+        methods: {
+          timeout (e) {
+            console.log('timeout', e)
+          }
+        }
+      })
+    </script>
+  </body>
+</html>
