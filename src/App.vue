@@ -1,10 +1,6 @@
 <template>
   <div id="app">
-    <debounce
-      v-slot="{ debounce }"
-      :wait="1000"
-      @timeout="timeout"
-    >
+    <debounce v-slot="{ debounce }" :wait="1000" @timeout="timeout">
       <button @click="debounce">
         Click me
       </button>
@@ -17,9 +13,9 @@ export default {
   name: 'App',
 
   methods: {
-    timeout (e) {
+    timeout(e) {
       console.log(e)
-    }
-  }
+    },
+  },
 }
 </script>
