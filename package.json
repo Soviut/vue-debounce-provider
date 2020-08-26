@@ -9,6 +9,10 @@
   "module": "dist/vue-debounce-provider.esm.js",
   "main": "dist/vue-debounce-provider.umd.js",
   "sideeffects": false,
+  "files": [
+    "dist/*.js",
+    "src"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/Soviut/vue-debounce-provider.git"
