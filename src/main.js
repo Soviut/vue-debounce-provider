@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import App from './App.vue'
-import Debounce from '../lib'
+import DebounceProvider from '../lib'
 
 Vue.config.productionTip = false
 
-Vue.component('debounce', Debounce)
+Vue.use(DebounceProvider)
 
 new Vue({
   render: h => h(App),
