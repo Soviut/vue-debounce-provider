@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
-import DebounceProvider from '../lib'
+import DebounceProvider from '../src'
 
 Vue.config.productionTip = false
 
