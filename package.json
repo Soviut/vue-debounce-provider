@@ -4,6 +4,10 @@
   "version": "0.1.0",
   "license": "MIT",
   "author": "Ian Zamojc",
+  "unpkg": "dist/vue-debounce-provider.umd.js",
+  "jsdelivr": "dist/vue-debounce-provider.umd.js",
+  "module": "dist/vue-debounce-provider.esm.js",
+  "main": "dist/vue-debounce-provider.umd.js",
   "sideeffects": false,
   "repository": {
     "type": "git",
@@ -16,7 +20,7 @@
   ],
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build": "rollup -c",
     "lint": "vue-cli-service lint",
     "test:unit": "vue-cli-service test:unit"
   },
