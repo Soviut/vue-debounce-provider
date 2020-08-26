@@ -1,6 +1,6 @@
 # vue-debounce-provider
 
-A template-based debounce component.
+A template-based debounce component using the provider pattern.
 
 ## Installation
 
