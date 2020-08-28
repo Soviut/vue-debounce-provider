@@ -31,24 +31,24 @@ export default {
 
   data() {
     return {
-      debouncer: null,
+      timer: null,
       debouncing: false,
     }
   },
 
   methods: {
     debounce($event) {
-      if ((!this.debouncer && this.leading) || this.wait === 0) {
+      if ((!this.timer && this.leading) || this.wait === 0) {
         this.$emit('timeout', $event)
       }
 
       if (this.wait > 0) {
-        clearTimeout(this.debouncer)
+        clearTimeout(this.timer)
 
         this.debouncing = true
 
-        this.debouncer = setTimeout(() => {
-          clearTimeout(this.debouncer)
+        this.timer = setTimeout(() => {
+          clearTimeout(this.timer)
 
           if (this.trailing) {
             this.$emit('timeout', $event)
