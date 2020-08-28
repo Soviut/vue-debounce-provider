@@ -3,6 +3,7 @@ export default {
     return h('div', [
       this.$scopedSlots.default({
         debounce: this.debounce,
+        debouncing: this.debouncing,
       }),
     ])
   },
@@ -31,6 +32,7 @@ export default {
   data() {
     return {
       debouncer: null,
+      debouncing: false,
     }
   },
 
@@ -43,11 +45,14 @@ export default {
       if (this.wait > 0) {
         clearTimeout(this.debouncer)
 
+        this.debouncing = true
+
         this.debouncer = setTimeout(() => {
           clearTimeout(this.debouncer)
 
           if (this.trailing) {
             this.$emit('timeout', $event)
+            this.debouncing = false
           }
         }, this.wait)
       }
