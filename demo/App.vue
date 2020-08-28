@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <debounce
-      v-slot="{ debounce, cancel, debouncing }"
+      v-slot="{ debounce, cancel, debouncing, wait }"
       :wait="3000"
       @timeout="timeout"
     >
@@ -14,7 +14,7 @@
       </button>
 
       <p>
-        Debouncing: {{ debouncing }}
+        Debouncing ({{ wait }} ms): {{ debouncing }}
       </p>
     </debounce>
   </div>

@@ -3,8 +3,9 @@ export default {
     return h('div', [
       this.$scopedSlots.default({
         debounce: this.debounce,
-        debouncing: this.debouncing,
         cancel: this.cancel,
+        debouncing: this.debouncing,
+        wait: this.wait,
       }),
     ])
   },
