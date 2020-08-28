@@ -4,6 +4,7 @@ export default {
       this.$scopedSlots.default({
         debounce: this.debounce,
         debouncing: this.debouncing,
+        cancel: this.cancel,
       }),
     ])
   },
@@ -57,5 +58,13 @@ export default {
         }, this.wait)
       }
     },
+
+    cancel($event) {
+      if (this.timer) {
+        clearTimeout(this.timer)
+        this.debouncing = false
+        this.$emit('cancel', $event)
+      }
+    }
   },
 }

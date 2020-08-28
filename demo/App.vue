@@ -1,8 +1,16 @@
 <template>
   <div id="app">
-    <debounce v-slot="{ debounce, debouncing }" :wait="2000" @timeout="timeout">
+    <debounce
+      v-slot="{ debounce, cancel, debouncing }"
+      :wait="3000"
+      @timeout="timeout"
+    >
       <button @click="debounce">
-        Click me
+        Start
+      </button>
+
+      <button @click="cancel">
+        Cancel
       </button>
 
       <p>
