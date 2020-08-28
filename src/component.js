@@ -18,6 +18,11 @@ export default {
       default: 0, // milliseconds
     },
 
+    maxWait: {
+      type: Number,
+      default: null, // milliseconds
+    },
+
     // invoke on the leading edge of the timeout
     leading: {
       type: Boolean,
@@ -34,6 +39,7 @@ export default {
   data() {
     return {
       timer: null,
+      maxTimer: null,
       debouncing: false,
     }
   },
@@ -51,21 +57,42 @@ export default {
 
         this.timer = setTimeout(() => {
           clearTimeout(this.timer)
+          this.timer = null
+          clearTimeout(this.maxTimer)
+          this.maxTimer = null
+          this.debouncing = false
 
           if (this.trailing) {
+            console.log('timeout')
             this.$emit('timeout', $event)
-            this.debouncing = false
           }
         }, this.wait)
+
+        this.maxTimer = setTimeout(() => {
+          clearTimeout(this.timer)
+          this.timer = null
+          clearTimeout(this.maxTimer)
+          this.maxTimer = null
+          this.debouncing = false
+
+          if (this.trailing) {
+            console.log('max timeout')
+            this.$emit('timeout', $event)
+          }
+        }, this.maxWait)
       }
     },
 
     cancel($event) {
       if (this.timer) {
         clearTimeout(this.timer)
+        this.timer = null
+        clearTimeout(this.maxTimer)
+        this.maxTimer = null
         this.debouncing = false
+
         this.$emit('cancel', $event)
       }
-    }
+    },
   },
 }

@@ -3,6 +3,7 @@
     <debounce
       v-slot="{ debounce, cancel, debouncing, wait }"
       :wait="3000"
+      :max-wait="3500"
       @timeout="timeout"
     >
       <button @click="debounce">
@@ -13,9 +14,7 @@
         Cancel
       </button>
 
-      <p>
-        Debouncing ({{ wait }} ms): {{ debouncing }}
-      </p>
+      <p>Debouncing ({{ wait }} ms): {{ debouncing }}</p>
     </debounce>
   </div>
 </template>
