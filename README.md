@@ -1,3 +1,7 @@
+[![npm version](https://badgen.net/npm/v/vue-debounce-provider?color=green)](https://www.npmjs.com/package/vue-debounce-provider)
+[![Bundlephobia](https://badgen.net/bundlephobia/minzip/vue-debounce-provider?color=green)](https://bundlephobia.com/result?p=vue-debounce-provider)
+[![License](https://badgen.net/github/license/dm4t2/vue-debounce-provider?color=green)](https://github.com/dm4t2/vue-debounce-provider/blob/master/LICENSE)
+
 # Vue Debounce Provider
 
 A template-based debounce component that uses scoped slots to allow any method
