@@ -12,11 +12,11 @@
         Start
       </button>
 
-      <button @click="flush">
+      <button :disabled="!debouncing" @click="flush">
         Flush
       </button>
 
-      <button @click="cancel">
+      <button :disabled="!debouncing" @click="cancel">
         Cancel
       </button>
 
@@ -30,13 +30,17 @@ export default {
   name: 'App',
 
   methods: {
+    onStart(e) {
+      console.log('onStart', e)
+    },
+
     onTimeout(e) {
       console.log('onTimeout', e)
     },
 
     onCancel(e) {
       console.log('onCancel', e)
-    }
+    },
   },
 }
 </script>
