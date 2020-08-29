@@ -1,20 +1,16 @@
 # vue-debounce-provider
 
-A template-based debounce component using the provider pattern. This allows
-any method to be debounced or throttled
-
-## What is Debouncing?
-
-Debouncing prevents a slow operation from being spammed by "noisy" events. It
-does this by waiting an elapsed time after each event before performing the
-operation. If another event comes in before the time has elapsed, the timer
-is restarted so only the last event triggers the operation a single time.
+A template-based debounce component that uses scoped slots to allow any method
+to be debounced or throttled without altering its code. It provides a
+interface similar to [Lodash Debounce](https://lodash.com/docs/4.17.15#debounce)
+so debounces can be cancelled or flushed as well as a scoped status variable
+that makes toggling loading spinners a breeze.
 
 ## Features
 
 - Tiny bundle size and no dependencies
 - Template-based debouncing using a scoped slot
-- Lodash-compatible props
+- Lodash Debounce-compatible props and interface
 - Throttling with optional `max-wait` prop
 - Support for leading and tailing evoking of `@timeout` event
 - Cancelable (end the debounce early without evoking `@timeout` event)
@@ -42,66 +38,44 @@ yarn install vue-debounce-provider
 
 ## Usage
 
-Vue Debounce Provider lets you perform debouncing directly in the template,
-rather than writing additional methods or using wrapper libraries.
+Add the Vue plugin in your `main.js`
 
-**Without Vue Debounce Provider**
+```js
+import Vue from 'vue'
+import VueDebounceProvider from 'vue-debounce-provider'
 
-```html
-<template>
-  <input type="range" @input="rangeChanged" />
-</template>
-
-<script>
-export default {
-  methods: {
-    rangeChanged(e) {
-      // some slow operation here
-      // This gets called hundreds of times as the range slider is moved!
-    }
-  }
-}
-</script>
+Vue.use(VueDebounceProvider)
 ```
 
-It uses a scoped slot to yield a `debounce` method. This
-method can be bound to as many events as you want. Like any debounce, the
-method restarts a timeout each time it is called. After the `:wait` time has
-elapsed uninterrupted, the method bound to `@timeout` is called.
-
-**With Vue Debounce Provider**
+In your template, wrap your event emitter in a `<debounce>` component. Copy the
+handler method your event calls to the `@timeout` event on `<debounce>`. Then
+replace the handler method on your event emitter with the scoped `debounce`
+function yielded by the scoped slot.
 
 ```html
 <template>
-  <vue-debounce-provider
+  <debounce
     v-slot="{ debounce }"
     :wait="300"
     @timeout="rangeChanged"
   >
     <input type="range" @input="debounce" />
-  </vue-debounce-provider>
+  </debounce>
 </template>
 
 <script>
-import VueDebounceProvider from 'vue-debounce-provider'
-
 export default {
-  components: {
-    VueDebounceProvider
-  },
-
   methods: {
     rangeChanged(e) {
-      // some slow operation here
-      // This only gets called once!
+      // perform some slow operation here
     }
   }
 }
 </script>
 ```
 
-Any event arguments received by `debounce` are passed to `@timeout` when it
-is called.
+Any event arguments received by the scoped `debounce` function are passed to
+`@timeout` when it is called.
 
 ### Props
 
@@ -112,6 +86,14 @@ Default: `0`
 
 Number of milliseconds to wait between `debounce` being called and invoking the
 `@timeout` method.
+
+#### `max-wait`
+
+Type: `Number`<br/>
+Default: `null`
+
+Number of milliseconds to wait, regardless of the debounce, before calling
+`@timeout` method. This effectively acts as a throttle.
 
 #### `leading`
 
@@ -130,12 +112,12 @@ has elapsed.
 
 ### Styling
 
-By default, the `<vue-debounce-provider>` component behaves like a `<div>`
-meaning it displays as a block and will affect layout. However, this can be
-adjusted with classes and styles.
+By default, the `<debounce>` component behaves like a `<div>`
+meaning it displays as a block and will contribute to layout. However, this can
+be easily adjusted with classes and styles.
 
 ```html
-<vue-debounce-provider class="d-inline-block">
+<debounce class="d-inline-block">
   ...
-</vue-debounce-provider>
+</debounce>
 ```
