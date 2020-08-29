@@ -24,7 +24,8 @@
     "throttle",
     "async",
     "delay",
-    "timeout"
+    "timeout",
+    "lodash"
   ],
   "scripts": {
     "serve": "vue-cli-service serve",
