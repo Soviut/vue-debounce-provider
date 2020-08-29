@@ -130,8 +130,51 @@ describe('@timeout', () => {
       wrapper.find('button.start').trigger('click')
       expect(onTimeout).not.toHaveBeenCalled()
 
-      jest.advanceTimersByTime(300)
+      // ensure not called at normal wait time
+      jest.advanceTimersByTime(100)
+      expect(onTimeout).not.toHaveBeenCalled()
+
+      jest.advanceTimersByTime(200)
+      expect(onTimeout).toHaveBeenCalledTimes(1)
+    })
+
+    it('should not be evoked after cancel is called', () => {
+      const onTimeout = jest.fn()
+
+      const wrapper = mountComponent({
+        propsData: { wait: 300 },
+        listeners: { timeout: onTimeout }
+      })
+
+      wrapper.find('button.start').trigger('click')
+      expect(onTimeout).not.toHaveBeenCalled()
+
+      jest.advanceTimersByTime(150)
+      wrapper.find('button.cancel').trigger('click')
+
+      // ensure not called at the normal wait time
+      jest.advanceTimersByTime(150)
+      expect(onTimeout).not.toHaveBeenCalled()
+    })
+
+    it('should be evoked immediately after flush is called', () => {
+      const onTimeout = jest.fn()
+
+      const wrapper = mountComponent({
+        propsData: { wait: 300 },
+        listeners: { timeout: onTimeout }
+      })
+
+      wrapper.find('button.start').trigger('click')
+      expect(onTimeout).not.toHaveBeenCalled()
+
+      jest.advanceTimersByTime(150)
+      wrapper.find('button.flush').trigger('click')
       expect(onTimeout).toHaveBeenCalled()
+
+      // ensure not called at the normal wait time
+      jest.advanceTimersByTime(150)
+      expect(onTimeout).toHaveBeenCalledTimes(1)
     })
   })
 })
