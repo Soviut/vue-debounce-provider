@@ -7,6 +7,7 @@
       @start="onStart"
       @timeout="onTimeout"
       @cancel="onCancel"
+      @flush="onFlush"
     >
       <button @click="debounce">
         Start
@@ -20,7 +21,7 @@
         Cancel
       </button>
 
-      <p>Debouncing ({{ wait }} ms, {{ maxWait }} max): {{ debouncing }}</p>
+      <p>Debouncing ({{ wait }} ms, {{ maxWait || 'no' }} max): {{ debouncing }}</p>
     </debounce>
   </div>
 </template>
@@ -40,6 +41,10 @@ export default {
 
     onCancel(e) {
       console.log('onCancel', e)
+    },
+
+    onFlush(e) {
+      console.log('onFlush', e)
     },
   },
 }
