@@ -1,4 +1,4 @@
-# vue-debounce-provider
+# Vue Debounce Provider
 
 A template-based debounce component that uses scoped slots to allow any method
 to be debounced or throttled without altering its code. It provides a
