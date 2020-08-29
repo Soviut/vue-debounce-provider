@@ -62,11 +62,7 @@ export default {
         this.debouncing = true
 
         this.timer = setTimeout(() => {
-          clearTimeout(this.timer)
-          this.timer = null
-          clearTimeout(this.maxTimer)
-          this.maxTimer = null
-          this.debouncing = false
+          this.stop()
 
           if (this.trailing) {
             this.$emit('timeout', $event)
@@ -75,11 +71,7 @@ export default {
 
         if (this.maxWait && !this.maxTimer) {
           this.maxTimer = setTimeout(() => {
-            clearTimeout(this.timer)
-            this.timer = null
-            clearTimeout(this.maxTimer)
-            this.maxTimer = null
-            this.debouncing = false
+            this.stop()
 
             if (this.trailing) {
               this.$emit('timeout', $event)
@@ -91,11 +83,7 @@ export default {
 
     cancel($event) {
       if (this.timer) {
-        clearTimeout(this.timer)
-        this.timer = null
-        clearTimeout(this.maxTimer)
-        this.maxTimer = null
-        this.debouncing = false
+        this.stop()
 
         this.$emit('cancel', $event)
       }
@@ -103,16 +91,20 @@ export default {
 
     flush($event) {
       if (this.timer) {
-        clearTimeout(this.timer)
-        this.timer = null
-        clearTimeout(this.maxTimer)
-        this.maxTimer = null
-        this.debouncing = false
+        this.stop()
 
         if (this.trailing) {
           this.$emit('timeout', $event)
         }
       }
+    },
+
+    stop() {
+      clearTimeout(this.timer)
+      this.timer = null
+      clearTimeout(this.maxTimer)
+      this.maxTimer = null
+      this.debouncing = false
     },
   },
 }
