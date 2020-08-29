@@ -21,7 +21,9 @@
         Cancel
       </button>
 
-      <p>Debouncing ({{ wait }} ms, {{ maxWait || 'no' }} max): {{ debouncing }}</p>
+      <p>
+        Debouncing ({{ wait }} ms, {{ maxWait || 'no' }} max): {{ debouncing }}
+      </p>
     </debounce>
   </div>
 </template>
