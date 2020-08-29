@@ -1,4 +1,4 @@
-import buble from 'rollup-plugin-buble'
+import buble from '@rollup/plugin-buble'
 import cleanup from 'rollup-plugin-cleanup'
 import filesize from 'rollup-plugin-filesize'
 import pkg from './package.json'
