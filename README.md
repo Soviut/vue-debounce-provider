@@ -1,16 +1,7 @@
 # vue-debounce-provider
 
-A template-based debounce component using the provider pattern.
-
-## Installation
-
-Install with npm
-
-    npm install vue-debounce-provider
-
-Install with Yarn
-
-    yarn install vue-debounce-provider
+A template-based debounce component using the provider pattern. This allows
+any method to be debounced or throttled
 
 ## What is Debouncing?
 
@@ -18,6 +9,36 @@ Debouncing prevents a slow operation from being spammed by "noisy" events. It
 does this by waiting an elapsed time after each event before performing the
 operation. If another event comes in before the time has elapsed, the timer
 is restarted so only the last event triggers the operation a single time.
+
+## Features
+
+- Tiny bundle size and no dependencies
+- Template-based debouncing using a scoped slot
+- Lodash-compatible props
+- Throttling with optional `max-wait` prop
+- Support for leading and tailing evoking of `@timeout` event
+- Cancelable (end the debounce early without evoking `@timeout` event)
+- Flushable (end the debounce early, evoking `@timeout` event)
+- Debouncing status variable makes toggling a loading spinner easy
+- Nuxt plugin built-in
+
+## Live Demo
+
+**Coming soon...**
+
+## Installation
+
+Install with npm
+
+```bash
+npm install vue-debounce-provider
+```
+
+Install with Yarn
+
+```bash
+yarn install vue-debounce-provider
+```
 
 ## Usage
 
