@@ -74,7 +74,7 @@ export default {
           }
         }, this.wait)
 
-        if (!this.maxTimer) {
+        if (this.maxWait && !this.maxTimer) {
           this.maxTimer = setTimeout(() => {
             clearTimeout(this.timer)
             this.timer = null

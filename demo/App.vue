@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <debounce
-      v-slot="{ debounce, cancel, flush, debouncing, wait }"
+      v-slot="{ debounce, cancel, flush, debouncing, wait, maxWait }"
       :wait="3000"
       :max-wait="3500"
       @start="onStart"
@@ -20,7 +20,7 @@
         Cancel
       </button>
 
-      <p>Debouncing ({{ wait }} ms): {{ debouncing }}</p>
+      <p>Debouncing ({{ wait }} ms, {{ maxWait }} max): {{ debouncing }}</p>
     </debounce>
   </div>
 </template>
