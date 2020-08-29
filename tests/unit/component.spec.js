@@ -17,6 +17,33 @@ const mountComponent = (config => shallowMount(Debounce, {
 }))
 
 describe('@timeout', () => {
+  describe('when :wait is default (0)', () => {
+    it('should be evoked immediately after debounce is called', () => {
+      const onTimeout = jest.fn()
+
+      const wrapper = mountComponent({
+        listeners: { timeout: onTimeout }
+      })
+
+      wrapper.find('button.start').trigger('click')
+      expect(onTimeout).toHaveBeenCalled()
+    })
+  })
+
+  describe('when :wait is 0', () => {
+    it('should be evoked immediately after debounce is called', () => {
+      const onTimeout = jest.fn()
+
+      const wrapper = mountComponent({
+        propsData: { wait: 0 },
+        listeners: { timeout: onTimeout }
+      })
+
+      wrapper.find('button.start').trigger('click')
+      expect(onTimeout).toHaveBeenCalled()
+    })
+  })
+
   describe('when :wait is 300', () => {
     it('should be evoked 300 ms after debounce is called', () => {
       const onTimeout = jest.fn()
@@ -28,7 +55,7 @@ describe('@timeout', () => {
 
       expect.assertions(3)
 
-      wrapper.find('button').trigger('click')
+      wrapper.find('button.start').trigger('click')
       expect(onTimeout).not.toHaveBeenCalled()
 
       // assert it has not been called midway
