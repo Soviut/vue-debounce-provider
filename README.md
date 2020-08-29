@@ -8,18 +8,14 @@ that makes toggling inputs a breeze.
 
 ## Features
 
-- Tiny bundle size and no dependencies
+- Tiny bundle size with no dependencies
 - Template-based debouncing using a scoped slot
-- [Lodash Debounce](https://lodash.com/docs/4.17.15#debounce)-compatible props and interface
+- Props and interface similar to [Lodash Debounce](https://lodash.com/docs/4.17.15#debounce)
 - Throttling with optional `max-wait` prop
 - Support for leading and tailing evoking of `@timeout` event
 - Cancelable and flushable
 - Debouncing status variable to easily toggle inputs
 - Nuxt plugin built-in
-
-## Live Demo
-
-**Coming soon...**
 
 ## Installation
 
@@ -75,6 +71,8 @@ the `debounce` function the scoped slot provides.
 
 Any event arguments received by the scoped `debounce` function are passed to
 `@timeout` when it is called.
+
+## API
 
 ### Props
 
