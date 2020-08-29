@@ -72,6 +72,30 @@ the `debounce` function the scoped slot provides.
 Any event arguments received by the scoped `debounce` function are passed to
 `@timeout` when it is called.
 
+### Nuxt
+
+Add the Nuxt plugin in your `nuxt.config.js`
+
+```js
+export default {
+  modules: [
+    'vue-debounce-provider'
+  ]
+}
+```
+
+### Styling
+
+By default, the `<debounce>` component behaves like a `<div>`
+meaning it displays as a block and will contribute to layout. However, this can
+be easily adjusted with classes and styles.
+
+```html
+<debounce class="d-inline-block">
+  ...
+</debounce>
+```
+
 ## API
 
 ### Props
@@ -188,27 +212,3 @@ display the number even with hard coded props.
 Type: `Number`
 
 The number of milliseconds set in the `:max-wait` prop.
-
-### Nuxt
-
-Add the Nuxt plugin in your `nuxt.config.js`
-
-```js
-export default {
-  modules: [
-    'vue-debounce-provider'
-  ]
-}
-```
-
-### Styling
-
-By default, the `<debounce>` component behaves like a `<div>`
-meaning it displays as a block and will contribute to layout. However, this can
-be easily adjusted with classes and styles.
-
-```html
-<debounce class="d-inline-block">
-  ...
-</debounce>
-```
