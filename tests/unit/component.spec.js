@@ -3,48 +3,40 @@ import Debounce from '../../src/component'
 
 jest.useFakeTimers()
 
-const mountComponent = propsData => shallowMount(Debounce, {
-  propsData,
+const mountComponent = (config => shallowMount(Debounce, {
+  ...config,
   scopedSlots: {
-    default: '<p>ding</p>'
+    default: `
+      <div>
+        <button class="start" @click="props.debounce">Start</button>
+        <button class="flush" @click="props.flush">Flush</button>
+        <button class="cancel" @click="props.cancel">Cancel</button>
+      </div>
+    `
   }
-})
-
-describe.skip('component', () => {
-  it('should mount', () => {
-    const wrapper = mountComponent({ propsData: {} })
-    expect(wrapper.is(Debounce)).toBe(true)
-  })
-})
+}))
 
 describe('@timeout', () => {
-  it('should be evoked after debounce is called', () => {
-    const onTimeout = jest.fn()
+  describe('when :wait is 300', () => {
+    it('should be evoked 300 ms after debounce is called', () => {
+      const onTimeout = jest.fn()
 
-    const wrapper = shallowMount(Debounce, {
-      propsData: {
-        wait: 300
-      },
-      listeners: {
-        timeout: onTimeout
-      },
-      scopedSlots: {
-        default: '<button @click="props.debounce">Start</button>'
-      }
+      const wrapper = mountComponent({
+        propsData: { wait: 300 },
+        listeners: { timeout: onTimeout }
+      })
+
+      expect.assertions(3)
+
+      wrapper.find('button').trigger('click')
+      expect(onTimeout).not.toHaveBeenCalled()
+
+      // assert it has not been called midway
+      jest.advanceTimersByTime(150)
+      expect(onTimeout).not.toHaveBeenCalled()
+
+      jest.advanceTimersByTime(150)
+      expect(onTimeout).toHaveBeenCalled()
     })
-
-    expect.assertions(3)
-
-    wrapper.find('button').trigger('click')
-
-    expect(onTimeout).not.toHaveBeenCalled()
-
-    jest.advanceTimersByTime(100)
-
-    expect(onTimeout).not.toHaveBeenCalled()
-
-    jest.runAllTimers()
-
-    expect(onTimeout).toHaveBeenCalled()
   })
 })
