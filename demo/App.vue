@@ -1,13 +1,19 @@
 <template>
   <div id="app">
     <debounce
-      v-slot="{ debounce, cancel, debouncing, wait }"
+      v-slot="{ debounce, cancel, flush, debouncing, wait }"
       :wait="3000"
       :max-wait="3500"
-      @timeout="timeout"
+      @start="onStart"
+      @timeout="onTimeout"
+      @cancel="onCancel"
     >
       <button @click="debounce">
         Start
+      </button>
+
+      <button @click="flush">
+        Flush
       </button>
 
       <button @click="cancel">
@@ -24,9 +30,13 @@ export default {
   name: 'App',
 
   methods: {
-    timeout(e) {
-      console.log(e)
+    onTimeout(e) {
+      console.log('onTimeout', e)
     },
+
+    onCancel(e) {
+      console.log('onCancel', e)
+    }
   },
 }
 </script>

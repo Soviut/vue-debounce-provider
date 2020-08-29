@@ -4,8 +4,10 @@ export default {
       this.$scopedSlots.default({
         debounce: this.debounce,
         cancel: this.cancel,
+        flush: this.flush,
         debouncing: this.debouncing,
         wait: this.wait,
+        maxWait: this.maxWait,
       }),
     ])
   },
@@ -46,6 +48,10 @@ export default {
 
   methods: {
     debounce($event) {
+      if (!this.timer) {
+        this.$emit('start', $event)
+      }
+
       if ((!this.timer && this.leading) || this.wait === 0) {
         this.$emit('timeout', $event)
       }
@@ -94,6 +100,21 @@ export default {
         this.debouncing = false
 
         this.$emit('cancel', $event)
+      }
+    },
+
+    flush($event) {
+      if (this.timer) {
+        clearTimeout(this.timer)
+        this.timer = null
+        clearTimeout(this.maxTimer)
+        this.maxTimer = null
+        this.debouncing = false
+
+        if (this.trailing) {
+          console.log('flush timeout')
+          this.$emit('timeout', $event)
+        }
       }
     },
   },
