@@ -125,7 +125,8 @@ be easily adjusted with classes and styles.
 
 #### `start`
 
-Invoked once at leading edge of a debounce cycle.
+Invoked once at leading edge of a debounce cycle. Will only be evoked again
+once the current debounce cycle has fully completed.
 
 #### `timeout`
 
@@ -147,3 +148,57 @@ Invoked when the `cancel` scoped function is called.
 Invoked when the `flush` scoped function is called.
 
 `@timeout` will also be invoked if `:trailing="true"`.
+
+### Scoped Slot
+
+Several optional scoped functions and variables are yielded inside the scoped
+slot.
+
+#### `debounce`
+
+Type: `Function`
+
+Calling will start a new debounce cycle is one is not already started and will
+reset the timer on an existing cycle.
+
+All arguments passed to this function will be forwarded to method on the
+`@timeout` handler. This means your handler will have access to `$event`.
+
+#### `cancel`
+
+Type: `Function`
+
+Calling this will immediately stop the current debounce cycle without evoking
+the `@timeout` handler.
+
+The `@cancel` handler will be evoked.
+
+#### `flush`
+
+Type: `Function`
+
+Calling this will immediately stop the current debounce cycle but will evoke
+`@timeout` if `:trailing="true"`.
+
+The `@flush` handler will also be evoked.
+
+#### `debouncing`
+
+Type: `Boolean`
+
+Indicates whether a debounce cycle is currently running. This is very useful
+for toggling loading spinners or disabling buttons while the debounce cycle
+is active.
+
+#### `wait`
+
+Type: `Number`
+
+The number of milliseconds set in the `:wait` prop. Useful for being able to
+display the number even with hard coded props.
+
+#### `max-wait`
+
+Type: `Number`
+
+The number of milliseconds set in the `:max-wait` prop.
