@@ -1,7 +1,7 @@
 {
   "name": "vue-debounce-provider",
   "description": "A template-based debounce component using the provider pattern.",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "license": "MIT",
   "author": "Ian Zamojc",
   "unpkg": "dist/vue-debounce-provider.umd.js",
