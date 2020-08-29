@@ -69,7 +69,6 @@ export default {
           this.debouncing = false
 
           if (this.trailing) {
-            console.log('timeout')
             this.$emit('timeout', $event)
           }
         }, this.wait)
@@ -83,7 +82,6 @@ export default {
             this.debouncing = false
 
             if (this.trailing) {
-              console.log('max timeout')
               this.$emit('timeout', $event)
             }
           }, this.maxWait)
@@ -112,7 +110,6 @@ export default {
         this.debouncing = false
 
         if (this.trailing) {
-          console.log('flush timeout')
           this.$emit('timeout', $event)
         }
       }
