@@ -125,8 +125,25 @@ be easily adjusted with classes and styles.
 
 #### `start`
 
+Invoked once at leading edge of a debounce cycle.
+
 #### `timeout`
+
+Invoked at the trailing edge of the debounce cycle if `:trailing="true"`
+(default).
+
+Invoked at the leading edge of the debounce cycle if `:leading="true"`.
+
+Invoked at the leading and trailing edge if both are `true`.
 
 #### `cancel`
 
+Invoked when the `cancel` scoped function is called.
+
+`@timeout` will not be invoked when a debounce is cancelled.
+
 #### `flush`
+
+Invoked when the `flush` scoped function is called.
+
+`@timeout` will also be invoked if `:trailing="true"`.
