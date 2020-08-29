@@ -68,18 +68,20 @@ export default {
           }
         }, this.wait)
 
-        this.maxTimer = setTimeout(() => {
-          clearTimeout(this.timer)
-          this.timer = null
-          clearTimeout(this.maxTimer)
-          this.maxTimer = null
-          this.debouncing = false
+        if (!this.maxTimer) {
+          this.maxTimer = setTimeout(() => {
+            clearTimeout(this.timer)
+            this.timer = null
+            clearTimeout(this.maxTimer)
+            this.maxTimer = null
+            this.debouncing = false
 
-          if (this.trailing) {
-            console.log('max timeout')
-            this.$emit('timeout', $event)
-          }
-        }, this.maxWait)
+            if (this.trailing) {
+              console.log('max timeout')
+              this.$emit('timeout', $event)
+            }
+          }, this.maxWait)
+        }
       }
     },
 
