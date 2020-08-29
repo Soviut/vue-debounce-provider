@@ -66,8 +66,8 @@ export default {
 </script>
 ```
 
-All you have to do is move your handler to the `@timeout` event and call
-the `debounce` function the scoped slot provides.
+All you have to do is move your handler to the `@timeout` event and put
+the `debounce` function the scoped slot provides in its place.
 
 Any event arguments received by the scoped `debounce` function are passed to
 `@timeout` when it is called.
