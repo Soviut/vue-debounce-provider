@@ -4,7 +4,7 @@ A template-based debounce component that uses scoped slots to allow any method
 to be debounced or throttled without altering its code. It provides a
 interface similar to [Lodash Debounce](https://lodash.com/docs/4.17.15#debounce)
 so debounces can be cancelled or flushed as well as a scoped status variable
-that makes toggling loading spinners a breeze.
+that makes toggling inputs a breeze.
 
 ## Features
 
@@ -14,7 +14,7 @@ that makes toggling loading spinners a breeze.
 - Throttling with optional `max-wait` prop
 - Support for leading and tailing evoking of `@timeout` event
 - Cancelable and flushable
-- Debouncing status variable makes toggling a loading spinner easy
+- Debouncing status variable to easily toggle inputs
 - Nuxt plugin built-in
 
 ## Live Demo
@@ -109,18 +109,6 @@ Default: `true`
 Invokes the `@timeout` method after the last `debounce` is called and `:wait`
 has elapsed.
 
-### Styling
-
-By default, the `<debounce>` component behaves like a `<div>`
-meaning it displays as a block and will contribute to layout. However, this can
-be easily adjusted with classes and styles.
-
-```html
-<debounce class="d-inline-block">
-  ...
-</debounce>
-```
-
 ### Events
 
 #### `start`
@@ -202,3 +190,27 @@ display the number even with hard coded props.
 Type: `Number`
 
 The number of milliseconds set in the `:max-wait` prop.
+
+### Nuxt
+
+Add the Nuxt plugin in your `nuxt.config.js`
+
+```js
+export default {
+  modules: [
+    'vue-debounce-provider'
+  ]
+}
+```
+
+### Styling
+
+By default, the `<debounce>` component behaves like a `<div>`
+meaning it displays as a block and will contribute to layout. However, this can
+be easily adjusted with classes and styles.
+
+```html
+<debounce class="d-inline-block">
+  ...
+</debounce>
+```
