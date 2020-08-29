@@ -115,7 +115,7 @@ describe('@timeout', () => {
       expect(onTimeout).toHaveBeenCalled()
     })
 
-    it('should be evoked after 500ms after debounce is called twice', () => {
+    it('should be evoked 500 ms after debounce is called twice', () => {
       const onTimeout = jest.fn()
 
       const wrapper = mountComponent({
@@ -126,11 +126,11 @@ describe('@timeout', () => {
       wrapper.find('button.start').trigger('click')
       expect(onTimeout).not.toHaveBeenCalled()
 
-      // assert it has not been called midway
-      jest.advanceTimersByTime(150)
+      jest.advanceTimersByTime(200)
+      wrapper.find('button.start').trigger('click')
       expect(onTimeout).not.toHaveBeenCalled()
 
-      jest.advanceTimersByTime(150)
+      jest.advanceTimersByTime(300)
       expect(onTimeout).toHaveBeenCalled()
     })
   })
