@@ -10,11 +10,10 @@ that makes toggling loading spinners a breeze.
 
 - Tiny bundle size and no dependencies
 - Template-based debouncing using a scoped slot
-- Lodash Debounce-compatible props and interface
+- [Lodash Debounce](https://lodash.com/docs/4.17.15#debounce)-compatible props and interface
 - Throttling with optional `max-wait` prop
 - Support for leading and tailing evoking of `@timeout` event
-- Cancelable (end the debounce early without evoking `@timeout` event)
-- Flushable (end the debounce early, evoking `@timeout` event)
+- Cancelable and flushable
 - Debouncing status variable makes toggling a loading spinner easy
 - Nuxt plugin built-in
 
@@ -47,10 +46,7 @@ import VueDebounceProvider from 'vue-debounce-provider'
 Vue.use(VueDebounceProvider)
 ```
 
-In your template, wrap your event emitter in a `<debounce>` component. Copy the
-handler method your event calls to the `@timeout` event on `<debounce>`. Then
-replace the handler method on your event emitter with the scoped `debounce`
-function yielded by the scoped slot.
+In your template wrap your event emitter in the `<debounce>` component
 
 ```html
 <template>
@@ -73,6 +69,9 @@ export default {
 }
 </script>
 ```
+
+All you have to do is move your handler to the `@timeout` event and call
+the `debounce` function the scoped slot provides.
 
 Any event arguments received by the scoped `debounce` function are passed to
 `@timeout` when it is called.
@@ -121,3 +120,13 @@ be easily adjusted with classes and styles.
   ...
 </debounce>
 ```
+
+### Events
+
+#### `start`
+
+#### `timeout`
+
+#### `cancel`
+
+#### `flush`
