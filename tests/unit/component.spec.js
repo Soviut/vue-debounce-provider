@@ -1,23 +1,25 @@
-import { shallowMount, mount } from '@vue/test-utils'
+import { shallowMount } from '@vue/test-utils'
 import Debounce from '../../src/component'
 
 jest.useFakeTimers()
 
-const mountComponent = (config => shallowMount(Debounce, {
-  ...config,
-  scopedSlots: {
-    default: `
-      <div>
-        <button class="start" @click="props.debounce">Start</button>
-        <button class="flush" @click="props.flush">Flush</button>
-        <button class="cancel" @click="props.cancel">Cancel</button>
-        <div class="debouncing">{{ props.debouncing }}</div>
-        <div class="wait">{{ props.wait }}</div>
-        <div class="max-wait">{{ props.maxWait }}</div>
-      </div>
-    `
-  }
-}))
+const mountComponent = config => {
+  shallowMount(Debounce, {
+    ...config,
+    scopedSlots: {
+      default: `
+        <div>
+          <button class="start" @click="props.debounce">Start</button>
+          <button class="flush" @click="props.flush">Flush</button>
+          <button class="cancel" @click="props.cancel">Cancel</button>
+          <div class="debouncing">{{ props.debouncing }}</div>
+          <div class="wait">{{ props.wait }}</div>
+          <div class="max-wait">{{ props.maxWait }}</div>
+        </div>
+      `,
+    },
+  })
+}
 
 describe('@start', () => {
   describe('when not debouncing', () => {
@@ -25,7 +27,7 @@ describe('@start', () => {
       const onStart = jest.fn()
 
       const wrapper = mountComponent({
-        listeners: { start: onStart }
+        listeners: { start: onStart },
       })
 
       wrapper.find('button.start').trigger('click')
@@ -39,7 +41,7 @@ describe('@start', () => {
 
       const wrapper = mountComponent({
         propsData: { wait: 300 },
-        listeners: { start: onStart }
+        listeners: { start: onStart },
       })
 
       wrapper.find('button.start').trigger('click')
@@ -57,7 +59,7 @@ describe('@start', () => {
 
       const wrapper = mountComponent({
         propsData: { wait: 300 },
-        listeners: { start: onStart }
+        listeners: { start: onStart },
       })
 
       wrapper.find('button.start').trigger('click')
@@ -76,7 +78,7 @@ describe('@timeout', () => {
       const onTimeout = jest.fn()
 
       const wrapper = mountComponent({
-        listeners: { timeout: onTimeout }
+        listeners: { timeout: onTimeout },
       })
 
       wrapper.find('button.start').trigger('click')
@@ -90,7 +92,7 @@ describe('@timeout', () => {
 
       const wrapper = mountComponent({
         propsData: { wait: 0 },
-        listeners: { timeout: onTimeout }
+        listeners: { timeout: onTimeout },
       })
 
       wrapper.find('button.start').trigger('click')
@@ -104,7 +106,7 @@ describe('@timeout', () => {
 
       const wrapper = mountComponent({
         propsData: { wait: 300 },
-        listeners: { timeout: onTimeout }
+        listeners: { timeout: onTimeout },
       })
 
       wrapper.find('button.start').trigger('click')
@@ -123,7 +125,7 @@ describe('@timeout', () => {
 
       const wrapper = mountComponent({
         propsData: { wait: 300 },
-        listeners: { timeout: onTimeout }
+        listeners: { timeout: onTimeout },
       })
 
       wrapper.find('button.start').trigger('click')
@@ -146,7 +148,7 @@ describe('@timeout', () => {
 
       const wrapper = mountComponent({
         propsData: { wait: 300 },
-        listeners: { timeout: onTimeout }
+        listeners: { timeout: onTimeout },
       })
 
       wrapper.find('button.start').trigger('click')
@@ -166,7 +168,7 @@ describe('@timeout', () => {
 
       const wrapper = mountComponent({
         propsData: { wait: 300 },
-        listeners: { timeout: onTimeout }
+        listeners: { timeout: onTimeout },
       })
 
       wrapper.find('button.start').trigger('click')
@@ -188,9 +190,9 @@ describe('@timeout', () => {
       const wrapper = mountComponent({
         propsData: {
           wait: 300,
-          maxWait: 400
+          maxWait: 400,
         },
-        listeners: { timeout: onTimeout }
+        listeners: { timeout: onTimeout },
       })
 
       wrapper.find('button.start').trigger('click')
@@ -221,7 +223,7 @@ describe('@flush', () => {
 
       const wrapper = mountComponent({
         propsData: { wait: 300 },
-        listeners: { flush: onFlush }
+        listeners: { flush: onFlush },
       })
 
       wrapper.find('button.flush').trigger('click')
@@ -235,7 +237,7 @@ describe('@flush', () => {
 
       const wrapper = mountComponent({
         propsData: { wait: 300 },
-        listeners: { flush: onFlush }
+        listeners: { flush: onFlush },
       })
 
       wrapper.find('button.start').trigger('click')
@@ -255,7 +257,7 @@ describe('@cancel', () => {
 
       const wrapper = mountComponent({
         propsData: { wait: 300 },
-        listeners: { flush: onCancel }
+        listeners: { flush: onCancel },
       })
 
       wrapper.find('button.flush').trigger('click')
@@ -269,7 +271,7 @@ describe('@cancel', () => {
 
       const wrapper = mountComponent({
         propsData: { wait: 300 },
-        listeners: { cancel: onCancel }
+        listeners: { cancel: onCancel },
       })
 
       wrapper.find('button.start').trigger('click')
@@ -292,8 +294,8 @@ describe('debouncing scoped prop', () => {
         propsData: { wait: 300 },
         listeners: {
           start: onStart,
-          timeout: onTimeout
-        }
+          timeout: onTimeout,
+        },
       })
 
       expect(wrapper.find('.debouncing').text()).toBe('false')
@@ -317,7 +319,7 @@ describe('wait scoped prop', () => {
   describe('when :wait is 300', () => {
     it('should be 300', async () => {
       const wrapper = mountComponent({
-        propsData: { wait: 300 }
+        propsData: { wait: 300 },
       })
 
       expect(wrapper.find('.wait').text()).toBe('300')
@@ -337,7 +339,7 @@ describe('maxWait scoped prop', () => {
   describe('when :max-wait is 1000', () => {
     it('should be 1000', async () => {
       const wrapper = mountComponent({
-        propsData: { maxWait: 1000 }
+        propsData: { maxWait: 1000 },
       })
 
       expect(wrapper.find('.max-wait').text()).toBe('1000')

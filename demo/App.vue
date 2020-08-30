@@ -9,17 +9,11 @@
       @cancel="onCancel"
       @flush="onFlush"
     >
-      <button @click="debounce">
-        Start
-      </button>
+      <button @click="debounce">Start</button>
 
-      <button :disabled="!debouncing" @click="flush">
-        Flush
-      </button>
+      <button :disabled="!debouncing" @click="flush">Flush</button>
 
-      <button :disabled="!debouncing" @click="cancel">
-        Cancel
-      </button>
+      <button :disabled="!debouncing" @click="cancel">Cancel</button>
 
       <p>
         Debouncing ({{ wait }} ms, {{ maxWait || 'no' }} max): {{ debouncing }}

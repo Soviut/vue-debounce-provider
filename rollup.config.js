@@ -3,8 +3,7 @@ import cleanup from 'rollup-plugin-cleanup'
 import filesize from 'rollup-plugin-filesize'
 import pkg from './package.json'
 
-const banner =
-  `/**
+const banner = `/**
  * Vue Debounce Provider ${pkg.version}
  * (c) 2020-${new Date().getFullYear()} ${pkg.author}
  * @license ${pkg.license}
@@ -17,7 +16,7 @@ export default {
       format: 'esm',
       file: pkg.module,
       exports: 'named',
-      banner
+      banner,
     },
     {
       name: 'VueDebounceProvider',
@@ -25,17 +24,17 @@ export default {
       exports: 'named',
       file: pkg.main,
       globals: {
-        vue: 'Vue'
+        vue: 'Vue',
       },
-      banner
-    }
+      banner,
+    },
   ],
   plugins: [
     buble({
-      objectAssign: true
+      objectAssign: true,
     }),
     cleanup(),
-    filesize()
+    filesize(),
   ],
-  external: ['vue']
+  external: ['vue'],
 }

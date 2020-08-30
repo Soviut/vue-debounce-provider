@@ -1,7 +1,7 @@
 module.exports = {
   root: true,
   env: {
-    node: true
+    node: true,
   },
   extends: ['plugin:vue/essential', 'eslint:recommended', '@vue/prettier'],
   parserOptions: {
@@ -13,9 +13,9 @@ module.exports = {
     'prettier/prettier': [
       'warn',
       {
-        'trailingComma': 'es5',
-        'singleQuote': true,
-        'semi': false,
+        trailingComma: 'es5',
+        singleQuote: true,
+        semi: false,
       },
     ],
   },

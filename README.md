@@ -12,14 +12,14 @@ that makes toggling inputs a breeze.
 
 ## Features
 
-- [Tiny bundle size](https://bundlephobia.com/result?p=vue-debounce-provider) with no dependencies
-- Template-based debouncing using a scoped slot
-- Props and interface similar to [Lodash Debounce](https://lodash.com/docs/4.17.15#debounce)
-- Throttling with optional `max-wait` prop
-- Support for leading and tailing evoking of `@timeout` event
-- Cancelable and flushable
-- Debouncing status variable to easily toggle inputs
-- Nuxt plugin built-in
+  - [Tiny bundle size](https://bundlephobia.com/result?p=vue-debounce-provider) with no dependencies
+  - Template-based debouncing using a scoped slot
+  - Props and interface similar to [Lodash Debounce](https://lodash.com/docs/4.17.15#debounce)
+  - Throttling with optional `max-wait` prop
+  - Support for leading and tailing evoking of `@timeout` event
+  - Cancelable and flushable
+  - Debouncing status variable to easily toggle inputs
+  - Nuxt plugin built-in
 
 ## Installation
 
@@ -168,7 +168,7 @@ Invoked when the `flush` scoped function is called.
 Several optional scoped functions and variables are yielded inside the scoped
 slot.
 
-#### `debounce`
+#### `debounce` scoped
 
 Type: `Function`
 
@@ -178,7 +178,7 @@ reset the timer on an existing cycle.
 All arguments passed to this function will be forwarded to method on the
 `@timeout` handler. This means your handler will have access to `$event`.
 
-#### `cancel`
+#### `cancel` scoped
 
 Type: `Function`
 
@@ -187,7 +187,7 @@ the `@timeout` handler.
 
 The `@cancel` handler will be evoked.
 
-#### `flush`
+#### `flush` scoped
 
 Type: `Function`
 
@@ -196,7 +196,7 @@ Calling this will immediately stop the current debounce cycle but will evoke
 
 The `@flush` handler will also be evoked.
 
-#### `debouncing`
+#### `debouncing` scoped
 
 Type: `Boolean`
 
@@ -204,14 +204,14 @@ Indicates whether a debounce cycle is currently running. This is very useful
 for toggling loading spinners or disabling buttons while the debounce cycle
 is active.
 
-#### `wait`
+#### `wait` scoped
 
 Type: `Number`
 
 The number of milliseconds set in the `:wait` prop. Useful for being able to
 display the number even with hard coded props.
 
-#### `max-wait`
+#### `max-wait` scoped
 
 Type: `Number`
 

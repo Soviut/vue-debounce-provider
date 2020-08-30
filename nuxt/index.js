@@ -4,7 +4,7 @@ module.exports = function nuxtVueDebounceprovider(options) {
   this.addPlugin({
     src: resolve(__dirname, 'plugin.js'),
     fileName: 'vue-debounce-provider.js',
-    options
+    options,
   })
 }
 
