@@ -12,14 +12,14 @@ that makes toggling inputs a breeze.
 
 ## Features
 
-  - [Tiny bundle size](https://bundlephobia.com/result?p=vue-debounce-provider) with no dependencies
-  - Template-based debouncing using a scoped slot
-  - Props and interface similar to [Lodash Debounce](https://lodash.com/docs/4.17.15#debounce)
-  - Throttling with optional `max-wait` prop
-  - Support for leading and tailing evoking of `@timeout` event
-  - Cancelable and flushable
-  - Debouncing status variable to easily toggle inputs
-  - Nuxt plugin built-in
+* [Tiny bundle size](https://bundlephobia.com/result?p=vue-debounce-provider) with no dependencies
+* Template-based debouncing using a scoped slot
+* Props and interface similar to [Lodash Debounce](https://lodash.com/docs/4.17.15#debounce)
+* Throttling with optional `max-wait` prop
+* Support for leading and tailing evoking of `@timeout` event
+* Cancelable and flushable
+* Debouncing status variable to easily toggle inputs
+* Nuxt plugin built-in
 
 ## Installation
 
