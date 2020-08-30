@@ -3,7 +3,7 @@ import Debounce from '../../src/component'
 
 jest.useFakeTimers()
 
-const mountComponent = config => {
+const mountComponent = (config) => {
   return shallowMount(Debounce, {
     ...config,
     scopedSlots: {
