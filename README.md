@@ -86,7 +86,7 @@ Add the Nuxt plugin in your `nuxt.config.js`
 ```js
 export default {
   modules: [
-    'vue-debounce-provider'
+    'vue-debounce-provider/nuxt'
   ]
 }
 ```
