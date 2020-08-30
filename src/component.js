@@ -94,6 +94,7 @@ export default {
         this.stop()
 
         if (this.trailing) {
+          this.$emit('flush', $event)
           this.$emit('timeout', $event)
         }
       }

@@ -30,7 +30,7 @@ describe('@start', () => {
     })
   })
 
-  describe('when already debouncing', () => {
+  describe('when debouncing', () => {
     it('should not evoke after debounce is called', () => {
       const onStart = jest.fn()
 
@@ -138,25 +138,6 @@ describe('@timeout', () => {
       expect(onTimeout).toHaveBeenCalledTimes(1)
     })
 
-    it('should not be evoked after cancel is called', () => {
-      const onTimeout = jest.fn()
-
-      const wrapper = mountComponent({
-        propsData: { wait: 300 },
-        listeners: { timeout: onTimeout }
-      })
-
-      wrapper.find('button.start').trigger('click')
-      expect(onTimeout).not.toHaveBeenCalled()
-
-      jest.advanceTimersByTime(150)
-      wrapper.find('button.cancel').trigger('click')
-
-      // ensure not called at the normal wait time
-      jest.advanceTimersByTime(150)
-      expect(onTimeout).not.toHaveBeenCalled()
-    })
-
     it('should be evoked immediately after flush is called', () => {
       const onTimeout = jest.fn()
 
@@ -175,6 +156,59 @@ describe('@timeout', () => {
       // ensure not called at the normal wait time
       jest.advanceTimersByTime(150)
       expect(onTimeout).toHaveBeenCalledTimes(1)
+    })
+
+    it('should not be evoked after cancel is called', () => {
+      const onTimeout = jest.fn()
+
+      const wrapper = mountComponent({
+        propsData: { wait: 300 },
+        listeners: { timeout: onTimeout }
+      })
+
+      wrapper.find('button.start').trigger('click')
+      expect(onTimeout).not.toHaveBeenCalled()
+
+      jest.advanceTimersByTime(150)
+      wrapper.find('button.cancel').trigger('click')
+
+      // ensure not called at the normal wait time
+      jest.advanceTimersByTime(150)
+      expect(onTimeout).not.toHaveBeenCalled()
+    })
+  })
+})
+
+describe('@flush', () => {
+  describe('when not debouncing', () => {
+    it('should not be evoked after flush is called', () => {
+      const onFlush = jest.fn()
+
+      const wrapper = mountComponent({
+        propsData: { wait: 300 },
+        listeners: { flush: onFlush }
+      })
+
+      wrapper.find('button.flush').trigger('click')
+      expect(onFlush).not.toHaveBeenCalled()
+    })
+  })
+
+  describe('when debouncing', () => {
+    it('should be evoked immediately after flush is called', () => {
+      const onFlush = jest.fn()
+
+      const wrapper = mountComponent({
+        propsData: { wait: 300 },
+        listeners: { flush: onFlush }
+      })
+
+      wrapper.find('button.start').trigger('click')
+      expect(onFlush).not.toHaveBeenCalled()
+
+      jest.advanceTimersByTime(150)
+      wrapper.find('button.flush').trigger('click')
+      expect(onFlush).toHaveBeenCalled()
     })
   })
 })
