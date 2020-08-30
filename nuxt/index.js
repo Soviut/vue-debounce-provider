@@ -1,6 +1,6 @@
 const { resolve } = require('path')
 
-module.exports = function nuxtVueDebounceprovider(options) {
+module.exports = function nuxtVueDebounceProvider(options) {
   this.addPlugin({
     src: resolve(__dirname, 'plugin.js'),
     fileName: 'vue-debounce-provider.js',
