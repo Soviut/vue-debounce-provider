@@ -11,6 +11,7 @@ const mountComponent = (config => shallowMount(Debounce, {
         <button class="start" @click="props.debounce">Start</button>
         <button class="flush" @click="props.flush">Flush</button>
         <button class="cancel" @click="props.cancel">Cancel</button>
+        <div class="debouncing">{{ props.debouncing }}</div>
       </div>
     `
   }
@@ -243,6 +244,37 @@ describe('@cancel', () => {
       jest.advanceTimersByTime(150)
       wrapper.find('button.cancel').trigger('click')
       expect(onCancel).toHaveBeenCalled()
+    })
+  })
+})
+
+describe('debouncing scoped prop', () => {
+  describe('when debouncing', () => {
+    it('should be true', async () => {
+      const onStart = jest.fn()
+      const onTimeout = jest.fn()
+
+      const wrapper = mountComponent({
+        propsData: { wait: 300 },
+        listeners: {
+          start: onStart,
+          timeout: onTimeout
+        }
+      })
+
+      expect(wrapper.find('.debouncing').text()).toBe('false')
+
+      wrapper.find('button.start').trigger('click')
+      expect(onStart).toHaveBeenCalled()
+
+      jest.advanceTimersByTime(150)
+      await wrapper.vm.$nextTick()
+      expect(wrapper.find('.debouncing').text()).toBe('true')
+
+      jest.advanceTimersByTime(150)
+      expect(onTimeout).toHaveBeenCalled()
+      await wrapper.vm.$nextTick()
+      expect(wrapper.find('.debouncing').text()).toBe('false')
     })
   })
 })
