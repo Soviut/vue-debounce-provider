@@ -1,4 +1,4 @@
-name: Deploy
+name: Build
 
 on: push
 
@@ -36,4 +36,5 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: npm ci
-      - run: npm run test:unit -- --coverage
+      - run: npm install -g codecov
+      - run: npm run test:unit -- --coverage && codecov
