@@ -12,6 +12,8 @@ const mountComponent = (config => shallowMount(Debounce, {
         <button class="flush" @click="props.flush">Flush</button>
         <button class="cancel" @click="props.cancel">Cancel</button>
         <div class="debouncing">{{ props.debouncing }}</div>
+        <div class="wait">{{ props.wait }}</div>
+        <div class="max-wait">{{ props.maxWait }}</div>
       </div>
     `
   }
@@ -275,6 +277,38 @@ describe('debouncing scoped prop', () => {
       expect(onTimeout).toHaveBeenCalled()
       await wrapper.vm.$nextTick()
       expect(wrapper.find('.debouncing').text()).toBe('false')
+    })
+  })
+})
+
+describe('wait scoped prop', () => {
+  describe('when :wait is 300', () => {
+    it('should be 300', async () => {
+      const wrapper = mountComponent({
+        propsData: { wait: 300 }
+      })
+
+      expect(wrapper.find('.wait').text()).toBe('300')
+    })
+  })
+})
+
+describe('maxWait scoped prop', () => {
+  describe('when :max-wait is default (null)', () => {
+    it('should be empty', async () => {
+      const wrapper = mountComponent()
+
+      expect(wrapper.find('.max-wait').text()).toBe('')
+    })
+  })
+
+  describe('when :max-wait is 1000', () => {
+    it('should be 1000', async () => {
+      const wrapper = mountComponent({
+        propsData: { maxWait: 1000 }
+      })
+
+      expect(wrapper.find('.max-wait').text()).toBe('1000')
     })
   })
 })
