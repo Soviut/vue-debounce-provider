@@ -180,6 +180,38 @@ describe('@timeout', () => {
       expect(onTimeout).not.toHaveBeenCalled()
     })
   })
+
+  describe('when :max-wait is 400', () => {
+    it('should be evoked 400 ms after debounce is called twice', () => {
+      const onTimeout = jest.fn()
+
+      const wrapper = mountComponent({
+        propsData: {
+          wait: 300,
+          maxWait: 400
+        },
+        listeners: { timeout: onTimeout }
+      })
+
+      wrapper.find('button.start').trigger('click')
+      expect(onTimeout).not.toHaveBeenCalled()
+
+      jest.advanceTimersByTime(200)
+      wrapper.find('button.start').trigger('click')
+      expect(onTimeout).not.toHaveBeenCalled()
+
+      // ensure not called at normal wait time
+      jest.advanceTimersByTime(100)
+      expect(onTimeout).not.toHaveBeenCalled()
+
+      jest.advanceTimersByTime(100)
+      expect(onTimeout).toHaveBeenCalledTimes(1)
+
+      // ensure not called at 500 ms trailing edge
+      jest.advanceTimersByTime(100)
+      expect(onTimeout).toHaveBeenCalledTimes(1)
+    })
+  })
 })
 
 describe('@flush', () => {
