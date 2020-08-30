@@ -1,4 +1,5 @@
 [![npm version](https://badgen.net/npm/v/vue-debounce-provider?color=green)](https://www.npmjs.com/package/vue-debounce-provider)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/0123ecbaca724d6d9be29a24f7264acb)](https://www.codacy.com/manual/Soviut/vue-debounce-provider)
 [![Bundlephobia](https://badgen.net/bundlephobia/minzip/vue-debounce-provider?color=green)](https://bundlephobia.com/result?p=vue-debounce-provider)
 [![License](https://badgen.net/github/license/Soviut/vue-debounce-provider?color=green)](https://github.com/Soviut/vue-debounce-provider/blob/master/LICENSE)
 
